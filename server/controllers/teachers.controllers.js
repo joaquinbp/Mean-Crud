@@ -8,7 +8,12 @@ teacherController.getTeachers = async (req, res) => {
 };
 
 teacherController.createTeacher = async (req, res) =>{
-    const teacher = new Teacher(req.body);
+    const teacher = new Teacher({
+        name : req.body.name,
+        surname : req.body.surname,
+        area : req.body.area,
+        salary : req.body.salary
+    });
     await teacher.save();
     res.json({
         status: 'Teacher save'
