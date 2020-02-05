@@ -1,2 +1,44 @@
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+<div *ngIf="identity">
+    <h1>Teacher App</h1>
+    <div>
+        Hi {{identity.name}}  {{identity.surname}}.
+        <span class="btn btn-warning" (click)="logout()">Log out</span>
+    </div>
+    <app-menu></app-menu>
+    <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!identity">
+    <div class="row">
+        <div class="col s6">
+            <h2>Login</h2>
+            <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)" class="col s7">
+                <p>
+                    <label>Email</label><input type="email"  #email="ngModel" name="email" [(ngModel)]="user.email" required/>
+                </p>
+                <p>
+                    <label>Password</label><input type="password"  #password="ngModel" name="password" [(ngModel)]="user.password" required/>
+                </p>
+                <input type="submit" value="Login" class="btn"/>
+            </form>
+        </div>
+        <div class="col s6">
+            <h2>Register</h2>
+            <form class="col s7">
+                <p>
+                    <label>Name</label><input type="text" #name="ngModel" name="name" [(ngModel)]="user.name" required/>
+                </p>
+                <p>
+                    <label>Surname</label><input type="text" #surname="ngModel" name="surname" [(ngModel)]="user.surname" required/>
+                </p>
+                <p>
+                    <label>Email</label><input type="email"  #email="ngModel" name="email" [(ngModel)]="user.email" required/>
+                </p>
+                <p>
+                    <label>Password</label><input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" required/>
+                </p>
+                <input type="submit" value="Register" class="btn"/>
+            </form>
+        </div>
+    </div>
+</div>

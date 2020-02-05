@@ -55,7 +55,7 @@ userCtrl.loginUser  =(req,res) => {
                             //Here return token crypt
                             res.status(200).send({token: jwtService.createToken(user)});
                         } else {
-                            res.status(200).send({message: 'All ok without get hash'});
+                            res.status(200).send({user});
                         }
                     } else {
                         res.status(404).send({message: 'User no login'});
