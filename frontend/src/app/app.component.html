@@ -24,18 +24,22 @@
         </div>
         <div class="col s6">
             <h2>Register</h2>
-            <form class="col s7">
+            <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister(registerForm)" class="col s7">
                 <p>
-                    <label>Name</label><input type="text" #name="ngModel" name="name" [(ngModel)]="user.name" required/>
+                    <label>Name</label><input type="text" #name="ngModel" name="name" [(ngModel)]="user_register.name" required/>
+                    <span *ngIf="name.touched && !name.valid">This field is required</span>
                 </p>
                 <p>
-                    <label>Surname</label><input type="text" #surname="ngModel" name="surname" [(ngModel)]="user.surname" required/>
+                    <label>Surname</label><input type="text" #surname="ngModel" name="surname" [(ngModel)]="user_register.surname" required/>
+                    <span *ngIf="surname.touched && !surname.valid">This field is required</span>
                 </p>
                 <p>
-                    <label>Email</label><input type="email"  #email="ngModel" name="email" [(ngModel)]="user.email" required/>
+                    <label>Email</label><input type="email"  #email="ngModel" name="email" [(ngModel)]="user_register.email" required/>
+                    <span *ngIf="email.touched && !email.valid">This field is required</span>
                 </p>
                 <p>
-                    <label>Password</label><input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" required/>
+                    <label>Password</label><input type="password" #password="ngModel" name="password" [(ngModel)]="user_register.password" required/>
+                    <span *ngIf="password.touched && !password.valid">This field is required</span>
                 </p>
                 <input type="submit" value="Register" class="btn"/>
             </form>
