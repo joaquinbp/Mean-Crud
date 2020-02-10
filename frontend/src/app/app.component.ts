@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from './models/user';
 import { UserService } from './services/users.service';
 import { NgForm } from '@angular/forms';
+import {Router} from '@angular/router';
 
 
 declare var M: any;
@@ -19,7 +20,7 @@ export class AppComponent {
   public identity = null;
   public token = null;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.user = new User('', '', '', '', '', 'ROLE_USER', '');
     this.user_register = new User('', '', '', '', '', 'ROLE_USER', '');
   }
@@ -86,6 +87,7 @@ export class AppComponent {
     this.identity = null;
     this.token = null;
     M.toast({ html: 'Login succesfully, thanks for your visit' });
+    this.router.navigate(['/']);
 
   }
 
@@ -110,6 +112,8 @@ export class AppComponent {
           this.user_register = new User('', '', '', '', '', 'ROLE_USER', '');
         }
       },
-       error => {})
+       error => {
+        M.toast({ html: 'Not register' });
+       });
   }
 }
